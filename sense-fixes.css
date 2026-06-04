@@ -1,59 +1,71 @@
-/* === IMAGEM === */
-.hero-photo img {
-  max-height: 480px;
-  width: auto;
-}
+/* ─── SENSE LP — FIXES HERO ──────────────────────────────────── */
 
-/* === FRAME RETANGULAR === */
-.hero-card-frame {
-  position: absolute;
-  width: 250px;
-  height: 330px;
-  border: 2.5px solid rgba(224, 98, 83, 0.5);
-  border-radius: 24px;
-  bottom: 30px;
-  right: 55px;
-  z-index: 2;
-  pointer-events: none;
-  background: transparent;
-}
-
+/* #0 — Imagem da médica: tamanho controlado, na frente do card */
 .hero-photo {
   z-index: 3;
 }
+.hero-photo img {
+  max-height: 500px;
+  width: auto;
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.12));
+}
 
-/* === ÍCONES FLUTUANTES === */
+/* #1 — Card retangular: a médica fica "dentro", com cabeça e
+        braços para fora (o card é menor que ela e fica atrás) */
+.hero-card-frame {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  bottom: 0;
+  right: 70px;
+  border-radius: 28px;
+  background: linear-gradient(160deg, #ffe3da 0%, #fbcdbf 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* #2/#4 — Ícones flutuantes (SVG) com movimento sobe-e-desce */
 .hero-float-icon {
   position: absolute;
-  background: white;
-  border-radius: 14px;
-  padding: 10px 14px;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(224, 98, 83, 0.18);
   z-index: 5;
   pointer-events: none;
-  animation: floatUpDown 3s ease-in-out infinite;
-  line-height: 1;
+  animation: floatUpDown 3.2s ease-in-out infinite;
 }
 
 .hero-float-calendar {
-  bottom: 150px;
-  right: 10px;
+  bottom: 300px;
+  right: 30px;
   animation-delay: 0s;
 }
 
 .hero-float-heart {
-  bottom: 260px;
-  right: 220px;
-  animation-delay: 1.2s;
+  bottom: 120px;
+  right: 360px;
+  animation-delay: 1.4s;
 }
 
 @keyframes floatUpDown {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-12px); }
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
 }
 
-/* === REDUZIR HAZE === */
-.hero-blob, [class*="blob"] {
-  opacity: 0.2 !important;
+/* #3 — Haze coral mais sutil */
+.hero-accent-blob {
+  background: radial-gradient(circle, rgba(252, 94, 59, 0.07) 0%, transparent 70%) !important;
+  width: 480px !important;
+  height: 480px !important;
+}
+
+/* Esconde os adornos no mobile */
+@media (max-width: 900px) {
+  .hero-card-frame,
+  .hero-float-icon { display: none; }
 }
